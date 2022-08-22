@@ -9,9 +9,11 @@ public class EmployeePayrollJDBC {
             connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/payroll_service", "root", "Sammed@10");
             System.out.println("Connection done.....");
             Statement statement = connection.createStatement();
+            statement.execute("UPDATE employee_payroll SET BasicPay=3000000.00 WHERE id=1");
             ResultSet resultSet = statement.executeQuery("SELECT * FROM employee_payroll");
             while (resultSet.next()) {
-                System.out.println(resultSet.getInt("id") + " " + resultSet.getString("name"));
+                System.out.println(resultSet.getInt("id") + " " + resultSet.getString("name") +
+                        " " + resultSet.getDouble("BasicPay"));
             }
         } catch (Exception e) {
             e.printStackTrace();
